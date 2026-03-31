@@ -6,8 +6,19 @@ const path = require('path');
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
-  cors: { origin: '*' }
+  cors: {
+    origin: '*',
+    methods: ['GET', 'POST']
+  },
+  // Railway için: önce polling, sonra websocket'e yükselt
+  transports: ['polling', 'websocket'],
+  allowEIO3: true,
+  pingTimeout: 60000,
+  pingInterval: 25000,
 });
+
+// Railway health check endpoint
+app.get('/health', (req, res) => res.json({ status: 'ok', rooms: Object.keys(rooms).length }));
 
 app.use(express.static(path.join(__dirname, 'public')));
 
