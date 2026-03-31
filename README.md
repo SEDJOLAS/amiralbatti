@@ -1,53 +1,75 @@
-[README.md](https://github.com/user-attachments/files/26361764/README.md)
-# 🚢 Amiral Battı — 3D Multiplayer
+# ⚓ AMİRAL BATTI — 4 Oyunculu Multiplayer
 
-Socket.io tabanlı gerçek zamanlı multiplayer Amiral Battı oyunu.
-
-## Dosyalar
-```
-battleship/
-├── server.js        ← Node.js + Socket.io backend
-├── package.json     ← Bağımlılıklar
-└── public/
-    └── index.html   ← Oyun arayüzü
-```
+Gerçek zamanlı, 2-4 oyunculu Amiral Battı oyunu. Node.js + Socket.io ile çalışır.
 
 ---
 
-## 🚀 Railway'e Deploy (Ücretsiz)
+## 🚀 Railway'e Deploy (Adım Adım)
 
-### Adım 1 — GitHub'a yükle
-1. [github.com](https://github.com) → **New repository** → `amiral-batti`
-2. Bu 3 dosyayı (server.js, package.json, public/index.html) yükle
-   - `public/` klasörü oluşturmayı unutma
+### 1. GitHub'a Yükle
 
-### Adım 2 — Railway'e bağla
-1. [railway.app](https://railway.app) → **Start a New Project**
+```bash
+git init
+git add .
+git commit -m "ilk commit"
+git branch -M main
+git remote add origin https://github.com/KULLANICI_ADI/amiral-batti.git
+git push -u origin main
+```
+
+### 2. Railway'de Proje Oluştur
+
+1. [railway.app](https://railway.app) → **New Project**
 2. **Deploy from GitHub repo** seç
-3. Az önce oluşturduğun repo'yu seç
-4. Railway otomatik olarak `npm start` çalıştırır
+3. Bu repoyu seç → **Deploy Now**
+4. Railway otomatik olarak `node server.js` komutunu çalıştırır
 
-### Adım 3 — URL al
-1. Deploy tamamlandıktan sonra **Settings → Domains → Generate Domain**
-2. Sana `xxx.up.railway.app` gibi bir link verir
-3. Bu linki arkadaşlarınla paylaş — hepiniz aynı anda oynayabilirsiniz!
+### 3. Domain Al (Ücretsiz)
 
----
-
-## 🎮 Nasıl Oynanır
-
-1. Bir oyuncu **Oda Oluştur** → 2/3/4 oyuncu seçer
-2. **6 haneli kodu** arkadaşlarına gönderir
-3. Diğerleri kodu girerek katılır
-4. Host **Oyunu Başlat** der
-5. Herkes kendi gemilerini yerleştirir (veya Rastgele)
-6. Sırayla ateş edilir → en son ayakta kalan kazanır!
+1. Railway dashboard → projen → **Settings**
+2. **Domains** sekmesi → **Generate Domain**
+3. `xxx.railway.app` gibi bir URL alırsın
+4. Bu URL'yi arkadaşlarınla paylaş!
 
 ---
 
-## Lokal Test
+## 🎮 Nasıl Oynanır?
+
+| Adım | Açıklama |
+|------|----------|
+| 1 | Bir oyuncu **ODA OLUŞTUR** tıklar, isim girer |
+| 2 | 5 haneli oda kodunu arkadaşlarına gönderir |
+| 3 | Diğerleri **ODAYA KATIL** ile kodu girer |
+| 4 | Host **BAŞLAT** tıklar (en az 2 oyuncu olmalı) |
+| 5 | Herkes gemilerini yerleştirir |
+| 6 | Sırayla ateş edilir — kim batırmaz batar! |
+
+### Oyun Mekaniği
+- **İsabet** → aynı oyuncu tekrar ateş eder
+- **Iskalama** → sıra bir sonraki oyuncuya geçer
+- **Gemi batırma** → düşman karttan düşer, sıra devam eder
+- **Son hayatta kalan** kazanır!
+
+---
+
+## 💻 Yerel Geliştirme
+
 ```bash
 npm install
 npm start
-# → http://localhost:3000
+# http://localhost:3000
+```
+
+---
+
+## 📁 Proje Yapısı
+
+```
+amiral-batti/
+├── server.js          # Socket.io sunucu
+├── public/
+│   └── index.html     # Oyun arayüzü
+├── package.json
+├── railway.json
+└── .gitignore
 ```
